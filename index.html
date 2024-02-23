@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+</head>
+<body>
+
+<div class="confession-container" id="confessionContainer">
+    <h1>Confession Time!</h1>
+    <p>Hey [Crush's Name],</p>
+    <input type="text" id="crushNameInput" placeholder="Type your crush's name">
+    <button onclick="authenticateAndSend()">My crush name</button>
+    <p id="confessionResult"></p>
+</div>
+
+
+<audio id="backgroundMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+
+
+<script>
+    var correctCrushName = "kaye"; // Your crush's name
+
+    function authenticateAndSend() {
+        var crushNameInput = document.getElementById('crushNameInput').value;
+        var confessionContainer = document.getElementById('confessionContainer');
+        var confessionResult = document.getElementById('confessionResult');
+    
+        if (crushNameInput.toLowerCase() === correctCrushName.toLowerCase()) {
+            confessionResult.innerHTML = 'Hi kaye! ,i really admire you. Matagal na akong may gusto sa iyo. first sem palang. Ang ganda mo tapos ang galing mo pa mag code :). Gusto kita matagal na, pero hindi ko alam kung may boy friend ka o wala. Natatakot ako na maulit yung pagkakamali ko hahaha, One of the many reasons why i am here, is nagkamali ako, nag kagusto ako sa taong may boy friend na. Minsan ka na nga lang mag mahal na pagtripan ka pa ng tadhana hahaha, Kaya sinabi ko sa sarili ko na aayusin ko yung sarili ko. Kaya naisip ko mag aral ulit at tuparin yung pangarap ko and long term goal ko. Corny ko no hahaha, Gustong gusto kita kaya lang kailangan ko muna ma kagraduate para sa kapatid ko and sa family ko. Pag wala kapang boyriend next year, ako nalang hahaha joke, liligawan kita promise. I never had a girlfriend, but when i do, i will sure it be the last. Hihintayin kita sa graduation :)  , p.s (alam mo bang mas introvert pa ako sa introvert kase hindi ko kinukuha yung sukli ko sa jeep hahahaha)  ';
+            confessionContainer.classList.add('elegant-background');
+            createDownwardFlowers();
+            playBackgroundMusic(); // Call the function to play background music
+        } else {
+            confessionResult.innerHTML = 'Sorry, wrong crush. Try again!';
+        }
+    }
+
+
+    function playBackgroundMusic() {
+        document.body.style.backgroundColor = '#ffdddd';
+        var backgroundMusic = new Howl({
+            src: ['music.mp3'],
+            autoplay: true,
+            loop: true,
+            volume: 0.2, // Adjust the volume as needed
+        });
+    }
+
+    function createDownwardFlowers() {
+        for (let i = 0; i < 10; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(flower);
+        }
+    }
+</script>
+
+</body>
+</html>
